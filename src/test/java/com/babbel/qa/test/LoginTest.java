@@ -14,6 +14,8 @@ import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.UUID;
 
 import static org.testng.AssertJUnit.assertFalse;
@@ -41,14 +43,20 @@ public class LoginTest extends BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void getResult(ITestResult result) throws IOException {
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
+        String methodName = result.getName();
+
         if (result.getStatus() == ITestResult.FAILURE) {
             test.log(LogStatus.FAIL, "Test Case Failed is "+result.getName());
             test.log(LogStatus.FAIL, "Test Case Failed is "+result.getThrowable());
 
             File srcFile=appiumDriver.getScreenshotAs(OutputType.FILE);
-            String filename=UUID.randomUUID().toString();
-            File targetFile=new File(System.getProperty("user.dir") + "/target/" + filename +".jpg");
-            FileUtils.copyFile(srcFile, targetFile);
+            String reportDirectory = new File(System.getProperty("user.dir")).getAbsolutePath() + "/target/surefire-reports";
+            FileUtils.deleteDirectory(new File(reportDirectory));
+            File destFile = new File((String) reportDirectory + "/failure_screenshots/" + methodName + "_" + formater.format(calendar.getTime()) + ".png");
+            FileUtils.copyFile(srcFile, destFile);
 
         }else if(result.getStatus() == ITestResult.SKIP){
         } else if (result.getStatus() == ITestResult.SUCCESS) {
@@ -62,7 +70,7 @@ public class LoginTest extends BaseTest {
     @Test(enabled = true, priority = 1, groups = {"regression"})
     public void verifyPageHeader()  {
         test = report.startTest("verifyPageHeader");
-        assertTrue("Application header is not correct.", loginPage.verifyPageHeader().contains("QA1234543"));
+        assertTrue("Application header is not correct.", loginPage.verifyPageHeader().contains("QA"));
     }
 
     @Test(enabled = true, priority = 2, groups = {"regression"})
@@ -136,6 +144,12 @@ public class LoginTest extends BaseTest {
         test = report.startTest("verifyBackButton");
         loginPage.backButton();
         assertTrue("Android Back button is failed.", loginPage.isPasswordFieldDisplayed());
+    }
+
+    @Test(enabled = true, priority = 13, groups = {"regression"})
+    public void verifyPageHeader_Negative_to_check_Screenshot()  {
+        test = report.startTest("verifyPageHeader");
+        assertTrue("Application header is not correct.", loginPage.verifyPageHeader().contains("QA1234543"));
     }
 
 }
