@@ -1,0 +1,19 @@
+{
+  "android": [
+    {
+      "udid": "L26AGGAIA4ACEEI2",
+      "imei": "911358859525677",
+      "systemPort": "8210",
+      "deviceName": "device_2",
+      "platformVersion": "7.0",
+      "platformName": "android",
+      "appPackage": "com.github.fgoncalves.qa",
+      "appActivity": "com.github.fgoncalves.qa.MainActivity",
+      "noReset": "true",
+      "automationName": "uiautomator2",
+      "autoGrantPermissions": "true",
+      "orientation": "PORTRAIT",
+      "app": "qa"
+    }
+  ]
+}
