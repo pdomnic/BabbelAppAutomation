@@ -58,4 +58,5 @@ You can find the IMEI number and model number within the Settings of the device 
 
 # Reports and Failed test case screenshot
 Report : /target/ExtentReportResults.html   (click ExtentReports icon on the top Left Hand Side)
+
 Faild Case Screenshot : target/surefire-reports/failure_screenshots/
