@@ -57,6 +57,7 @@ You can find the IMEI number and model number within the Settings of the device 
 <project_home>: mvn clean test
 
 //Run test based on groups in testng.xml (regression -All test cases,  sanity - only functional cases)
+
 <project_home>: mvn test -Dgroup=regression 
 
 <project_home>: mvn test -Dgroup=sanity 
