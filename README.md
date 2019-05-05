@@ -26,8 +26,7 @@ Click on the Apple icon in the top-left of the screen.
 Click on About This Mac. On the popup, tap on System Report. 
 Under the hardware section, click on USB. You will notice the device connected there; click on the Android device: 
 
-Vendor Id = Device name
-Serial Number = udid
+Vendor Id = Device name  &   Serial Number = udid
 
 4. How to get your device imei
 You can find the IMEI number and model number within the Settings of the device (steps below). You can also find the IMEI by dialling *#06# on the keypad and tapping the call button to view the IMEI.
